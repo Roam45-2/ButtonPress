@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seconds Lived Calculator</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background: #ff5f6d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #ff2b44;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>How Many Seconds Have You Lived?</h1>
+        <label for="birth_date">Enter your birth date:</label>
+        <input type="date" id="birth_date" required>
+        <button onclick="calculateSeconds()">Calculate</button>
+
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function calculateSeconds() {
+            let birthDate = document.getElementById("birth_date").value;
+            if (!birthDate) {
+                alert("Please enter your birth date.");
+                return;
+            }
+
+            let birthTime = new Date(birthDate).getTime();
+            let now = new Date().getTime();
+            let secondsLived = Math.floor((now - birthTime) / 1000);
+
+            document.getElementById("result").innerHTML = 
+                `🌟 You have lived approximately <b>${secondsLived.toLocaleString()}</b> seconds!`;
+        }
+    </script>
+
+</body>
+</html>
